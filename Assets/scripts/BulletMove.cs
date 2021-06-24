@@ -8,19 +8,26 @@ public class BulletMove : MonoBehaviour
     [SerializeField]
     private float speed = 10f;
 
-    private GameManager gameManagaer = null;
+    private GameManager gameManager = null;
+    private PlayerMove playerMove = null;
 
     private void Start()
     {
-        gameManagaer = FindObjectOfType<GameManager>();
+        gameManager = FindObjectOfType<GameManager>();
+        playerMove = FindObjectOfType<PlayerMove>();
     }
 
     private void Update()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
-        if (transform.position.x > gameManagaer.MaxPosition.x)
+        if (transform.position.x > gameManager.MaxPosition.x)
         {
-            Destroy(gameObject);
+            Despawn();
         }
+    }
+    public void Despawn()
+    {
+        transform.SetParent(gameManager.Pool.transform, false);
+        gameObject.SetActive(false);
     }
 }

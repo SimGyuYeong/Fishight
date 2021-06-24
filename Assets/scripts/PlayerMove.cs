@@ -45,25 +45,41 @@ public class PlayerMove : MonoBehaviour
         }
         
     }
-
+    
     private IEnumerator SpawnBullet()
     {
-        if (bulletPrefab != null)
+        while (true)
         {
-            GameObject bullet;
-            while (true)
-            {
-                bullet = Instantiate(bulletPrefab, bulletPosition);
-                bullet.transform.SetParent(null);
-                yield return new WaitForSeconds(bulletDelay);
-            }
+            SpawnOrInstantiate();
+            yield return new WaitForSeconds(bulletDelay);
         }
+    }
+
+    private void SpawnOrInstantiate()
+    {
+        if (bulletPrefab == null) return;
+        GameObject bullet = null;
+        if (gameManager.Pool.transform.childCount > 0)
+        {
+            bullet = gameManager.Pool.transform.GetChild(0).gameObject;
+            bullet.transform.SetParent(bulletPosition, false);
+            bullet.transform.position = bulletPosition.position;
+            bullet.SetActive(true);
+        }
+        else
+        {
+            bullet = Instantiate(bulletPrefab, bulletPosition);
+            bullet.transform.position = bulletPosition.position;
+        }
+        bullet.transform.SetParent(null);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isDead) return;
-        gameManager.RemoveDurability(1f);
+        if (collision.gameObject.CompareTag("Marlin")) gameManager.RemoveDurability(1f);
+        else if (collision.gameObject.CompareTag("Stingray")) gameManager.RemoveDurability(1.8f);
+        else gameManager.RemoveDurability(1f);
         Destroy(collision.gameObject);
         StartCoroutine(Dead());
         isDead = true;
@@ -80,4 +96,6 @@ public class PlayerMove : MonoBehaviour
         }
         isDead = false;
     }
+
+    
 }

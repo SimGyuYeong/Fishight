@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 6706484251784985212}
   - component: {fileID: 6025657259714067515}
   - component: {fileID: 8926979127660213218}
+  - component: {fileID: 3730341266325698285}
+  - component: {fileID: -3256629820311935110}
   m_Layer: 0
   m_Name: StingrayEnemy
-  m_TagString: Untagged
+  m_TagString: Stingray
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,3 +139,39 @@ PolygonCollider2D:
       - {x: 0.30066198, y: -0.10156674}
       - {x: 0.40846363, y: -0.06960904}
       - {x: 0.4932291, y: 0.03684912}
+--- !u!50 &3730341266325698285
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2968062191808032946}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &-3256629820311935110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2968062191808032946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da06b1a2fee550e4482e183aa1dd6e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  addmove: 250
+  hp: 5
