@@ -6,13 +6,13 @@ public class MonkMove : MonoBehaviour
 {
     [Header("아귀 이동속도")]
     [SerializeField]
-    protected float speed = 0.2f;
+    protected float speed = 0.7f;
     [Header("아귀 추가이동거리")]
     [SerializeField]
     private float addmove = 455f;
     [Header("아귀 체력")]
     [SerializeField]
-    private int hp = 10;
+    private int hp = 7;
 
     protected GameManager gameManager = null;
     private SpriteRenderer spriteRenderer = null;
@@ -49,9 +49,9 @@ public class MonkMove : MonoBehaviour
     {
         if (collision.CompareTag("Bullet"))
         {
+            
             collision.transform.SetParent(gameManager.Pool.transform, false);
             collision.gameObject.SetActive(false);
-            gameObject.SetActive(false);
             if (hp > 1)
             {
                 if (isDamaged) return;
@@ -68,12 +68,12 @@ public class MonkMove : MonoBehaviour
     private IEnumerator Damaged()
     {
         hp--;
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
             spriteRenderer.enabled = false;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
             spriteRenderer.enabled = true;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
         }
         isDamaged = false;
     }

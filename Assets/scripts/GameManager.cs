@@ -201,7 +201,7 @@ public class GameManager : MonoBehaviour
         {
             if (move >= 3000)
             {
-                delay = Random.Range(0.5f, 15f);
+                delay = Random.Range(5f, 15f);
                 positionY = Random.Range(3.5f, -3.5f);
                 Instantiate(enemyMonkPrefab, new Vector2(11f, positionY), Quaternion.identity);
             }
@@ -209,9 +209,4 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Despawn()
-    {
-        transform.SetParent(Pool.transform, false);
-        gameObject.SetActive(false);
-    }
 }
