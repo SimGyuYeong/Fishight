@@ -87,9 +87,7 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            if (move >= 5000) RemoveDurability(0.5f);
-            else if(move>=2000) RemoveDurability(0.2f);
-            else RemoveDurability(0.1f);
+            RemoveDurability(0.2f);
             Move(addmove);
             yield return new WaitForSeconds(Delay);
         }
@@ -127,7 +125,9 @@ public class GameManager : MonoBehaviour
     {
             while (true)
             {
-                    delay = Random.Range(1.5f, 4f);
+                if(move>=3500) delay = Random.Range(0.6f, 2.5f);
+                else if (move>=1000) delay = Random.Range(1f, 3f);
+                else delay = Random.Range(1.5f, 4f);
                     positionY = Random.Range(3.5f, -3.5f);
                     spawncount = Random.Range(1, 6);
                     for (int i = 0; i < spawncount; i++)
@@ -146,7 +146,9 @@ public class GameManager : MonoBehaviour
             {
                 if (move >= 500)
                 {
-                    delay = Random.Range(1.5f, 6f);
+                    if(move>=1500) delay = Random.Range(1.5f, 4f);
+                    else if (move>=2700) delay = Random.Range(1f, 3f);
+                    else delay = Random.Range(1.5f, 6f);
                     positionY = Random.Range(3.5f, -3.5f);
                     spawncount = Random.Range(1, 3);
                     for (int i = 0; i < spawncount; i++)
@@ -167,7 +169,9 @@ public class GameManager : MonoBehaviour
         {
             if (move >= 800)
             {
-                delay = Random.Range(5f, 20f);
+                if(move>=2000) delay = Random.Range(3f, 15f);
+                else if (move>=4500) delay = Random.Range(1.5f, 10f);
+                else delay = Random.Range(5f, 20f);
                 positionY = Random.Range(3.5f, -3.5f);
                 spawncount = 1;
                 for(int i = 0; i < spawncount; i++)
@@ -187,7 +191,8 @@ public class GameManager : MonoBehaviour
         {
             if (move >= 1300)
             {
-                delay = Random.Range(3.5f, 8f);
+                if(move>=3200) delay = Random.Range(2f, 5.5f);
+                else delay = Random.Range(3.5f, 8f);
                 positionY = Random.Range(3.5f, -3.5f);
                 Instantiate(enemySalmonPrefab, new Vector2(-11f, positionY), Quaternion.identity);
             }
@@ -201,7 +206,8 @@ public class GameManager : MonoBehaviour
         {
             if (move >= 3000)
             {
-                delay = Random.Range(5f, 15f);
+                if(move>=9000) delay = Random.Range(3f, 10f);
+                else delay = Random.Range(5f, 15f);
                 positionY = Random.Range(3.5f, -3.5f);
                 Instantiate(enemyMonkPrefab, new Vector2(11f, positionY), Quaternion.identity);
             }

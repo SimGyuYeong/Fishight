@@ -3,8 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class GameStartManager : MonoBehaviour
 {
-    public void OnClick()
+    public void OnStartClick()
     {
         SceneManager.LoadScene("Main");
+    }
+
+    public void OnExitClick()
+    {
+        Application.Quit();
     }
 }
