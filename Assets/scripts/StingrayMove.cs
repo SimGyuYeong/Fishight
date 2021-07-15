@@ -15,7 +15,6 @@ public class StingrayMove : MonoBehaviour
     private int hp = 5;
 
     private Collider2D col = null;
-    protected GameManager gameManager = null;
     private SpriteRenderer spriteRenderer = null;
     private BulletMove bulletMove = null;
 
@@ -23,7 +22,6 @@ public class StingrayMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
         col = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         bulletMove = FindObjectOfType<BulletMove>();
@@ -38,7 +36,7 @@ public class StingrayMove : MonoBehaviour
 
     private void CheckLimit()
     {
-        if (transform.position.x < gameManager.MinPosition.x)
+        if (transform.position.x < GameManager.Instance.MinPosition.x)
         {
             Destroy(gameObject);
         }
@@ -53,7 +51,7 @@ public class StingrayMove : MonoBehaviour
     {
         if (collision.CompareTag("Bullet"))
         {
-            collision.transform.SetParent(gameManager.Pool.transform, false);
+            collision.transform.SetParent(GameManager.Instance.Pool.transform, false);
             collision.gameObject.SetActive(false);
             if (hp > 1)
             {
@@ -62,8 +60,8 @@ public class StingrayMove : MonoBehaviour
                 StartCoroutine(Damaged());
                 return;
             }
-            gameManager.AddDurability(10f);
-            gameManager.Move(addmove);
+            GameManager.Instance.AddDurability(10f);
+            GameManager.Instance.Move(addmove);
             Destroy(gameObject);
             
         }
